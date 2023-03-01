@@ -14,6 +14,7 @@
 		6B1199F629AF6B0600454193 /* NetworkInfrastructureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1199F529AF6B0600454193 /* NetworkInfrastructureTests.swift */; };
 		6B119A0029AF6B0600454193 /* NetworkInfrastructureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1199FF29AF6B0600454193 /* NetworkInfrastructureUITests.swift */; };
 		6B119A0229AF6B0600454193 /* NetworkInfrastructureUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B119A0129AF6B0600454193 /* NetworkInfrastructureUITestsLaunchTests.swift */; };
+		6B119A1229AF6DBC00454193 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B119A1129AF6DBC00454193 /* EndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		6B1199FB29AF6B0600454193 /* NetworkInfrastructureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkInfrastructureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B1199FF29AF6B0600454193 /* NetworkInfrastructureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfrastructureUITests.swift; sourceTree = "<group>"; };
 		6B119A0129AF6B0600454193 /* NetworkInfrastructureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfrastructureUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6B119A1129AF6DBC00454193 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +96,10 @@
 		6B1199E329AF6B0400454193 /* NetworkInfrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				6B1199E429AF6B0400454193 /* NetworkInfrastructureApp.swift */,
-				6B1199E629AF6B0400454193 /* ContentView.swift */,
-				6B1199E829AF6B0500454193 /* Assets.xcassets */,
-				6B1199EA29AF6B0500454193 /* Preview Content */,
+				6B119A1029AF6D7C00454193 /* Application */,
+				6B119A1329AF965C00454193 /* Presentation */,
+				6B119A0F29AF6D6E00454193 /* Resources */,
+				6B119A0E29AF6D5A00454193 /* Infrastructure */,
 			);
 			path = NetworkInfrastructure;
 			sourceTree = "<group>";
@@ -125,6 +127,55 @@
 				6B119A0129AF6B0600454193 /* NetworkInfrastructureUITestsLaunchTests.swift */,
 			);
 			path = NetworkInfrastructureUITests;
+			sourceTree = "<group>";
+		};
+		6B119A0E29AF6D5A00454193 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				6B119A1129AF6DBC00454193 /* EndPoint.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		6B119A0F29AF6D6E00454193 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B1199EA29AF6B0500454193 /* Preview Content */,
+				6B1199E829AF6B0500454193 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6B119A1029AF6D7C00454193 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6B1199E429AF6B0400454193 /* NetworkInfrastructureApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6B119A1329AF965C00454193 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				6B119A1529AF967F00454193 /* ViewModel */,
+				6B119A1429AF967800454193 /* View */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		6B119A1429AF967800454193 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B1199E629AF6B0400454193 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B119A1529AF967F00454193 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B119A1229AF6DBC00454193 /* EndPoint.swift in Sources */,
 				6B1199E729AF6B0400454193 /* ContentView.swift in Sources */,
 				6B1199E529AF6B0400454193 /* NetworkInfrastructureApp.swift in Sources */,
 			);
@@ -416,7 +468,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NetworkInfrastructure/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"NetworkInfrastructure/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 65KV6R2AGS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -445,7 +497,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"NetworkInfrastructure/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"NetworkInfrastructure/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 65KV6R2AGS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
