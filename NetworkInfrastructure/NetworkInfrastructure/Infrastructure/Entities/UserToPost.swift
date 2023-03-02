@@ -11,10 +11,3 @@ public struct UserToPost: Encodable {
     let name: String
     let job: String
 }
-
-public struct PostedUserResult: Decodable {
-    let name: String
-    let job: String
-    let id: String
-    let createdAt: String
-}
