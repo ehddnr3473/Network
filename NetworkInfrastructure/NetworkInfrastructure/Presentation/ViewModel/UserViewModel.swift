@@ -10,7 +10,7 @@ import Foundation
 final class UserViewModel: ObservableObject {
     private let networkService: NetworkService
     @Published var user: UserResult.User?
-    @Published var postedUserResult: PostedUserResult?
+    @Published var customUserInformation: CustomUserInformation?
     
     init(networkService: NetworkService) {
         self.networkService = networkService
@@ -43,7 +43,7 @@ final class UserViewModel: ObservableObject {
                 do {
                     let postedUserResult = try JSONDecoder().decode(PostedUserResult.self, from: data)
                     DispatchQueue.main.async {
-                        self.postedUserResult = postedUserResult
+                        self.customUserInformation = CustomUserInformation(postedUserResult: postedUserResult)
                     }
                 } catch(let error) {
                     print(String(describing: error))
@@ -51,6 +51,39 @@ final class UserViewModel: ObservableObject {
             case .failure(let error):
                 print(String(describing: error))
             }
+        }
+    }
+    
+    func putUserButtonTapped(id: String, name: String, job: String) {
+        guard Int(id) != nil else { return }
+        
+        networkService.requestPut(httpMethod: .put, id: id, user: UserToPut(name: name, job: job)) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let updatedUserResult = try JSONDecoder().decode(UpdatedUserResult.self, from: data)
+                    DispatchQueue.main.async {
+                        self.customUserInformation = CustomUserInformation(id: id, updatedUserResult: updatedUserResult)
+                    }
+                } catch(let error) {
+                    print(String(describing: error))
+                }
+            case .failure(let error):
+                print(String(describing: error))
+            }
+            /*
+             // PUT 메서드에 응답 데이터가 없는 경우
+             switch result {
+             case .success(let success):
+                 if success {
+                     print("Update succeeded!")
+                 } else {
+                     print("Undefined code detected.")
+                 }
+             case .failure(let error):
+                 print(String(describing: error))
+             }
+             */
         }
     }
     
