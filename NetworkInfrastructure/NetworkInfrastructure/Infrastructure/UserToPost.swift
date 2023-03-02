@@ -12,7 +12,7 @@ public struct UserToPost: Codable {
     let job: String
 }
 
-public struct UserPostedResult: Codable {
+public struct PostedUserResult: Codable {
     let name: String
     let job: String
     let id: String
