@@ -19,6 +19,7 @@
 		6BFDC90729B054120005730F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDC90629B054110005730F /* User.swift */; };
 		6BFDC90929B05DE70005730F /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDC90829B05DE70005730F /* UserViewModel.swift */; };
 		6BFDC90D29B081FA0005730F /* UserToPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDC90C29B081FA0005730F /* UserToPost.swift */; };
+		6BFDC91129B0A6670005730F /* UpdatedUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFDC91029B0A6670005730F /* UpdatedUserResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		6BFDC90629B054110005730F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6BFDC90829B05DE70005730F /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		6BFDC90C29B081FA0005730F /* UserToPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToPost.swift; sourceTree = "<group>"; };
+		6BFDC91029B0A6670005730F /* UpdatedUserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedUserResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,10 +142,9 @@
 		6B119A0E29AF6D5A00454193 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				6BFDC91229B0B1960005730F /* Entities */,
 				6B119A1129AF6DBC00454193 /* EndPoint.swift */,
 				6BFDC90229B04BA20005730F /* NetworkService.swift */,
-				6BFDC90629B054110005730F /* User.swift */,
-				6BFDC90C29B081FA0005730F /* UserToPost.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -188,6 +189,16 @@
 				6BFDC90829B05DE70005730F /* UserViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6BFDC91229B0B1960005730F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				6BFDC90629B054110005730F /* User.swift */,
+				6BFDC90C29B081FA0005730F /* UserToPost.swift */,
+				6BFDC91029B0A6670005730F /* UpdatedUserResult.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +338,7 @@
 				6BFDC90729B054120005730F /* User.swift in Sources */,
 				6BFDC90D29B081FA0005730F /* UserToPost.swift in Sources */,
 				6B1199E529AF6B0400454193 /* NetworkInfrastructureApp.swift in Sources */,
+				6BFDC91129B0A6670005730F /* UpdatedUserResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
