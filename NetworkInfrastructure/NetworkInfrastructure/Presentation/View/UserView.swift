@@ -98,6 +98,7 @@ struct UserView: View {
             Text("Result: ")
                 .font(.system(.headline, weight: .bold))
             Text(viewModel.result)
+                .foregroundColor(viewModel.result.contains("succeeded") ? .blue : .red)
             Spacer()
         }
         .padding(.leading)
