@@ -9,7 +9,7 @@ import Foundation
 
 final class UserViewModel: ObservableObject {
     private let networkService: NetworkService
-    @Published var user: UserResult.User?
+    @Published var user: CustomUser?
     @Published var customUserInformation: CustomUserInformation?
     
     init(networkService: NetworkService) {
@@ -23,9 +23,9 @@ final class UserViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 do {
-                    let user = try JSONDecoder().decode(UserResult.self, from: data)
+                    let userResult = try JSONDecoder().decode(UserResult.self, from: data)
                     DispatchQueue.main.async {
-                        self.user = user.data
+                        self.user = CustomUser(user: userResult.data)
                     }
                 } catch(let error) {
                     print(String(describing: error))
