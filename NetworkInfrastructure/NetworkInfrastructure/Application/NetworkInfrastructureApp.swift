@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct NetworkInfrastructureApp: App {
+    let viewModel = UserViewModel(networkService: DefaultNetworkService())
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UserView(viewModel: viewModel)
         }
     }
 }
