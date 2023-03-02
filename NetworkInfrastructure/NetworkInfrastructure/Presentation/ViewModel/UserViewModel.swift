@@ -29,7 +29,7 @@ final class UserViewModel: ObservableObject {
                 do {
                     let userResult = try JSONDecoder().decode(UserResult.self, from: data)
                     DispatchQueue.main.async {
-                        self.result = "GET Succeeded!"
+                        self.result = "GET succeeded!"
                         self.user = CustomUser(user: userResult.data)
                     }
                 } catch(let error) {
@@ -57,7 +57,7 @@ final class UserViewModel: ObservableObject {
                 do {
                     let postedUserResult = try JSONDecoder().decode(PostedUserResult.self, from: data)
                     DispatchQueue.main.async {
-                        self.result = "POST Succeeded!"
+                        self.result = "POST succeeded!"
                         self.customUserInformation = CustomUserInformation(postedUserResult: postedUserResult)
                     }
                 } catch(let error) {
@@ -87,7 +87,7 @@ final class UserViewModel: ObservableObject {
                 do {
                     let updatedUserResult = try JSONDecoder().decode(UpdatedUserResult.self, from: data)
                     DispatchQueue.main.async {
-                        self.result = "PUT Succeeded!"
+                        self.result = "PUT succeeded!"
                         self.customUserInformation = CustomUserInformation(id: id, updatedUserResult: updatedUserResult)
                     }
                 } catch(let error) {
