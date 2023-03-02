@@ -46,7 +46,7 @@ public extension EndPoint {
     var path: String {
         switch self {
         case .`default`:
-            return "/api/users/2"
+            return "/api/users"
         }
     }
 }
