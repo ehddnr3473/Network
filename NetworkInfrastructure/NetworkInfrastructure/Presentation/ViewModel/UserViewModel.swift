@@ -8,15 +8,18 @@
 import Foundation
 
 final class UserViewModel: ObservableObject {
+    // MARK: - Properties
     private let networkService: NetworkService
     @Published var user: CustomUser?
     @Published var customUserInformation: CustomUserInformation?
     @Published var result = ""
     
+    // MARK: - Init
     init(networkService: NetworkService) {
         self.networkService = networkService
     }
     
+    // MARK: - GET
     func getUserButtonTapped(id: String) {
         guard Int(id) != nil else { return }
         
@@ -37,13 +40,14 @@ final class UserViewModel: ObservableObject {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.result = "GET failed!"
+                    self.result = "GET failed during network task!"
                 }
                 print(String(describing: error))
             }
         }
     }
     
+    // MARK: - POST
     func postUserButtonTapped(name: String, job: String) {
         networkService.requestPost(httpMethod: .post, user: UserToPost(name: name, job: job)) { result in
             switch result {
@@ -62,13 +66,14 @@ final class UserViewModel: ObservableObject {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.result = "POST failed!"
+                    self.result = "POST failed during network task!"
                 }
                 print(String(describing: error))
             }
         }
     }
     
+    // MARK: - PUT
     func putUserButtonTapped(id: String, name: String, job: String) {
         guard Int(id) != nil else { return }
         
@@ -89,7 +94,7 @@ final class UserViewModel: ObservableObject {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.result = "PUT failed!"
+                    self.result = "PUT failed during network task!"
                 }
                 print(String(describing: error))
             }
@@ -106,7 +111,7 @@ final class UserViewModel: ObservableObject {
                  }
              case .failure(let error):
                  DispatchQueue.main.async {
-                     self.result = "PUT succeeded!"
+                     self.result = "PUT failed during network task!"
                  }
                  print(String(describing: error))
              }
@@ -114,6 +119,7 @@ final class UserViewModel: ObservableObject {
         }
     }
     
+    // MARK: - DELETE
     func deleteUserButtonTapped(id: String) {
         guard Int(id) != nil else { return }
         
@@ -131,7 +137,7 @@ final class UserViewModel: ObservableObject {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.result = "DELETE failed!"
+                    self.result = "DELETE failed during network task!"
                 }
                 print(String(describing: error))
             }
