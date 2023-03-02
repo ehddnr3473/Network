@@ -30,6 +30,8 @@ struct UserView: View {
     
     var body: some View {
         VStack {
+            resultBody
+            
             userInformationBody
             
             submitBody
@@ -43,7 +45,7 @@ struct UserView: View {
                         id = ""
                     }
                 }
-                .frame(width: 120, height: 50)
+                .frame(width: 120, height: 40)
                 .border(.secondary)
                 .disabled(!isIdValid)
                 
@@ -55,7 +57,7 @@ struct UserView: View {
                         job = ""
                     }
                 }
-                .frame(width: 120, height: 50)
+                .frame(width: 120, height: 40)
                 .border(.secondary)
                 .disabled(!isPostValid)
             }
@@ -71,7 +73,7 @@ struct UserView: View {
                         putId = ""
                     }
                 }
-                .frame(width: 120, height: 50)
+                .frame(width: 120, height: 40)
                 .border(.secondary)
                 .disabled(!isPutValid)
                 
@@ -81,17 +83,27 @@ struct UserView: View {
                         id = ""
                     }
                 }
-                .frame(width: 120, height: 50)
+                .frame(width: 120, height: 40)
                 .border(.secondary)
                 .disabled(!isIdValid)
             }
         }
     }
     
+    var resultBody: some View {
+        HStack {
+            Text("Result: ")
+                .font(.system(.headline, weight: .bold))
+            Text(viewModel.result)
+            Spacer()
+        }
+        .padding(.leading)
+    }
+    
     var userInformationBody: some View {
         VStack {
             Text("User Information")
-                .font(.system(.title2, weight: .bold))
+                .font(.system(.title3, weight: .bold))
                 .padding(.bottom)
             
             VStack(spacing: 8) {
@@ -127,7 +139,7 @@ struct UserView: View {
                     Spacer()
                 }
             }
-            .padding(15)
+            .padding(10)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.cyan)
@@ -142,8 +154,7 @@ struct UserView: View {
     var submitBody: some View {
         VStack {
             Text("Submit form")
-                .font(.system(.title2, weight: .bold))
-                .padding(.bottom)
+                .font(.system(.title3, weight: .bold))
             
             VStack(spacing: 8) {
                 HStack {
@@ -164,7 +175,7 @@ struct UserView: View {
                     TextField("Type your job..", text: $job)
                 }
             }
-            .padding(15)
+            .padding(10)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.pink)
@@ -177,7 +188,7 @@ struct UserView: View {
     var submitResultsBody: some View {
         VStack {
             Text("Submit Results")
-                .font(.system(.title2, weight: .bold))
+                .font(.system(.title3, weight: .bold))
             
             VStack(spacing: 8) {
                 HStack {
@@ -208,7 +219,7 @@ struct UserView: View {
                     Spacer()
                 }
             }
-            .padding(15)
+            .padding(10)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.indigo)
