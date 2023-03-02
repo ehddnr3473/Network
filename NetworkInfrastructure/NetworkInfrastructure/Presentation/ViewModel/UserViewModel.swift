@@ -53,4 +53,19 @@ final class UserViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteUserButtonTapped(id: String) {
+        guard Int(id) != nil else { return }
+        
+        networkService.requestDelete(httpMethod: .delete, id: id) { result in
+            switch result {
+            case .success(let success):
+                if success {
+                    print("Deletion succeeded!")
+                }
+            case .failure(let error):
+                print(String(describing: error))
+            }
+        }
+    }
 }
