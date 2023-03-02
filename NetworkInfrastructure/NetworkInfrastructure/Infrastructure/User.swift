@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct UserResult: Codable {
+public struct UserResult: Decodable {
     let data: User
     
-    public struct User: Codable {
+    public struct User: Decodable {
         let id: Int
         let email: String
         let firstName: String
