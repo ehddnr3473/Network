@@ -56,7 +56,10 @@ struct UserView: View {
                 .border(.secondary)
                 
                 Button("DELETE USER") {
-//                    viewModel.deleteUserButtonTapped()
+                    if !id.trimmingCharacters(in: .whitespaces).isEmpty {
+                        viewModel.deleteUserButtonTapped(id: id)
+                        id = ""
+                    }
                 }
                 .frame(width: 120, height: 50)
                 .border(.secondary)
@@ -110,7 +113,7 @@ struct UserView: View {
                     .shadow(radius: 2)
             }
             
-            TextField("Type ID..", text: $id)
+            TextField("Type ID for GET or DELETE", text: $id)
         }
         .padding()
     }
