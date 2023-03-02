@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpdatedUserResult: Decodable {
+public struct UpdatedUserResult: Decodable {
     let name: String
     let job: String
     let updatedAt: String
