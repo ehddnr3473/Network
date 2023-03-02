@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct UserToPost: Codable {
+public struct UserToPost: Encodable {
     let name: String
     let job: String
 }
 
-public struct PostedUserResult: Codable {
+public struct PostedUserResult: Decodable {
     let name: String
     let job: String
     let id: String
