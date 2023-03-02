@@ -10,11 +10,22 @@ import SwiftUI
 struct UserView: View {
     @ObservedObject var viewModel: UserViewModel
     @State var id = ""
+    @State var putId = ""
     @State var name = ""
     @State var job = ""
     
     var isIdValid: Bool {
         !id.isEmpty && Int(id) != nil
+    }
+    
+    var isPostValid: Bool {
+        !name.isEmpty && !job.isEmpty
+    }
+    
+    var isPutValid: Bool {
+        !putId.isEmpty &&
+        Int(putId) != nil &&
+        isPostValid
     }
     
     var body: some View {
@@ -46,14 +57,23 @@ struct UserView: View {
                 }
                 .frame(width: 120, height: 50)
                 .border(.secondary)
+                .disabled(!isPostValid)
             }
             
             HStack {
                 Button("PUT USER") {
-//                    viewModel.putUserButtonTapped()
+                    if !putId.trimmingCharacters(in: .whitespaces).isEmpty &&
+                        !name.trimmingCharacters(in: .whitespaces).isEmpty &&
+                        !job.trimmingCharacters(in: .whitespaces).isEmpty {
+                        viewModel.putUserButtonTapped(id: putId, name: name, job: job)
+                        name = ""
+                        job = ""
+                        putId = ""
+                    }
                 }
                 .frame(width: 120, height: 50)
                 .border(.secondary)
+                .disabled(!isPutValid)
                 
                 Button("DELETE USER") {
                     if !id.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -63,6 +83,7 @@ struct UserView: View {
                 }
                 .frame(width: 120, height: 50)
                 .border(.secondary)
+                .disabled(!isIdValid)
             }
         }
     }
@@ -126,6 +147,12 @@ struct UserView: View {
             
             VStack(spacing: 8) {
                 HStack {
+                    Text("ID: ")
+                        .fontWeight(.bold)
+                    TextField("Type your ID for PUT", text: $putId)
+                }
+                
+                HStack {
                     Text("Name: ")
                         .fontWeight(.bold)
                     TextField("Type your name..", text: $name)
@@ -156,21 +183,28 @@ struct UserView: View {
                 HStack {
                     Text("ID: ")
                         .fontWeight(.bold)
-                    Text(viewModel.postedUserResult?.id ?? "")
+                    Text(viewModel.customUserInformation?.id ?? "")
                     Spacer()
                 }
                 
                 HStack {
                     Text("Name: ")
                         .fontWeight(.bold)
-                    Text(viewModel.postedUserResult?.name ?? "")
+                    Text(viewModel.customUserInformation?.name ?? "")
                     Spacer()
                 }
                 
                 HStack {
                     Text("Job: ")
                         .fontWeight(.bold)
-                    Text(viewModel.postedUserResult?.job ?? "")
+                    Text(viewModel.customUserInformation?.job ?? "")
+                    Spacer()
+                }
+                
+                HStack {
+                    Text("At: ")
+                        .fontWeight(.bold)
+                    Text(viewModel.customUserInformation?.at ?? "")
                     Spacer()
                 }
             }
