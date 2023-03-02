@@ -10,21 +10,41 @@ import Foundation
 public protocol NetworkService: AnyObject {
     typealias CompletionHandler = (Result<Data, Error>) -> Void
     
-    func request(httpMethod: HttpMethodType, completion: @escaping CompletionHandler)
+    func requestGet(httpMethod: HttpMethodType, id: String, completion: @escaping CompletionHandler)
+    func requestPost(httpMethod: HttpMethodType, user: UserToPost, completion: @escaping CompletionHandler)
 }
 
 public final class DefaultNetworkService: NetworkService {
-    public func request(httpMethod: HttpMethodType, completion: @escaping CompletionHandler) {
+    public func requestGet(httpMethod: HttpMethodType, id: String, completion: @escaping CompletionHandler) {
         let endPoint = EndPoint.default
-        let request = prepareRequest(endPoint, httpMethod)
+        let request = prepareRequestGet(endPoint, httpMethod, id)
         makeRequest(request: request, completion: completion)
     }
     
-    private func prepareRequest(_ endPoint: EndPoint, _ httpMethod: HttpMethodType) -> URLRequest {
+    public func requestPost(httpMethod: HttpMethodType, user: UserToPost, completion: @escaping CompletionHandler) {
+        let endPoint = EndPoint.default
+        let request = prepareRequestPost(endPoint, httpMethod, user)
+        makeRequest(request: request, completion: completion)
+    }
+    
+    private func prepareRequestGet(_ endPoint: EndPoint, _ httpMethod: HttpMethodType, _ id: String) -> URLRequest {
+        var urlComponents = URLComponents(string: endPoint.baseURL)
+        urlComponents?.path = endPoint.path
+        urlComponents?.path += "/"
+        urlComponents?.path += id
+        var request = URLRequest(url: urlComponents!.url!)
+        request.httpMethod = httpMethod.rawValue
+        
+        return request
+    }
+    
+    private func prepareRequestPost<BodyType: Encodable>(_ endPoint: EndPoint, _ httpMethod: HttpMethodType, _ body: BodyType) -> URLRequest {
         var urlComponents = URLComponents(string: endPoint.baseURL)
         urlComponents?.path = endPoint.path
         var request = URLRequest(url: urlComponents!.url!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = httpMethod.rawValue
+        request.httpBody = try? JSONEncoder().encode(body)
         
         return request
     }
