@@ -11,6 +11,7 @@ final class UserViewModel: ObservableObject {
     private let networkService: NetworkService
     @Published var user: CustomUser?
     @Published var customUserInformation: CustomUserInformation?
+    @Published var result = ""
     
     init(networkService: NetworkService) {
         self.networkService = networkService
@@ -25,12 +26,19 @@ final class UserViewModel: ObservableObject {
                 do {
                     let userResult = try JSONDecoder().decode(UserResult.self, from: data)
                     DispatchQueue.main.async {
+                        self.result = "GET Succeeded!"
                         self.user = CustomUser(user: userResult.data)
                     }
                 } catch(let error) {
+                    DispatchQueue.main.async {
+                        self.result = "GET failed!"
+                    }
                     print(String(describing: error))
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.result = "GET failed!"
+                }
                 print(String(describing: error))
             }
         }
@@ -43,12 +51,19 @@ final class UserViewModel: ObservableObject {
                 do {
                     let postedUserResult = try JSONDecoder().decode(PostedUserResult.self, from: data)
                     DispatchQueue.main.async {
+                        self.result = "POST Succeeded!"
                         self.customUserInformation = CustomUserInformation(postedUserResult: postedUserResult)
                     }
                 } catch(let error) {
+                    DispatchQueue.main.async {
+                        self.result = "POST failed!"
+                    }
                     print(String(describing: error))
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.result = "POST failed!"
+                }
                 print(String(describing: error))
             }
         }
@@ -63,12 +78,19 @@ final class UserViewModel: ObservableObject {
                 do {
                     let updatedUserResult = try JSONDecoder().decode(UpdatedUserResult.self, from: data)
                     DispatchQueue.main.async {
+                        self.result = "PUT Succeeded!"
                         self.customUserInformation = CustomUserInformation(id: id, updatedUserResult: updatedUserResult)
                     }
                 } catch(let error) {
+                    DispatchQueue.main.async {
+                        self.result = "PUT failed!"
+                    }
                     print(String(describing: error))
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.result = "PUT failed!"
+                }
                 print(String(describing: error))
             }
             /*
@@ -76,14 +98,19 @@ final class UserViewModel: ObservableObject {
              switch result {
              case .success(let success):
                  if success {
-                     print("Update succeeded!")
+                     DispatchQueue.main.async {
+                         self.result = "PUT succeeded!"
+                     }
                  } else {
                      print("Undefined code detected.")
                  }
              case .failure(let error):
+                 DispatchQueue.main.async {
+                     self.result = "PUT succeeded!"
+                 }
                  print(String(describing: error))
              }
-             */
+            */
         }
     }
     
@@ -94,9 +121,18 @@ final class UserViewModel: ObservableObject {
             switch result {
             case .success(let success):
                 if success {
-                    print("Deletion succeeded!")
+                    DispatchQueue.main.async {
+                        self.result = "DELETE succeeded!"
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.result = "DELETE failed!"
+                    }
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.result = "DELETE failed!"
+                }
                 print(String(describing: error))
             }
         }
