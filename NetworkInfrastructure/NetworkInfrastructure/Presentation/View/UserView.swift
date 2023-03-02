@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserView: View {
+    // MARK: - Properties
     @ObservedObject var viewModel: UserViewModel
     @State var id = ""
     @State var putId = ""
@@ -28,6 +29,7 @@ struct UserView: View {
         isPostValid
     }
     
+    // MARK: - Body
     var body: some View {
         VStack {
             resultBody
@@ -90,6 +92,7 @@ struct UserView: View {
         }
     }
     
+    // MARK: - Result view
     var resultBody: some View {
         HStack {
             Text("Result: ")
@@ -100,6 +103,7 @@ struct UserView: View {
         .padding(.leading)
     }
     
+    // MARK: - User information view
     var userInformationBody: some View {
         VStack {
             Text("User Information")
@@ -151,6 +155,7 @@ struct UserView: View {
         .padding()
     }
     
+    // MARK: - Submit form view
     var submitBody: some View {
         VStack {
             Text("Submit form")
@@ -185,6 +190,7 @@ struct UserView: View {
         .padding()
     }
     
+    // MARK: - Submit results view
     var submitResultsBody: some View {
         VStack {
             Text("Submit Results")
@@ -230,6 +236,7 @@ struct UserView: View {
     }
 }
 
+// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let networkService = DefaultNetworkService()
