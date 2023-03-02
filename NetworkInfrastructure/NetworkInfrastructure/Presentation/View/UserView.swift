@@ -152,6 +152,7 @@ struct UserView: View {
             }
             
             TextField("Type ID for GET or DELETE", text: $id)
+                .autocorrectionDisabled()
         }
         .padding()
     }
@@ -167,18 +168,21 @@ struct UserView: View {
                     Text("ID: ")
                         .fontWeight(.bold)
                     TextField("Type your ID for PUT", text: $putId)
+                        .autocorrectionDisabled()
                 }
                 
                 HStack {
                     Text("Name: ")
                         .fontWeight(.bold)
                     TextField("Type your name..", text: $name)
+                        .autocorrectionDisabled()
                 }
                 
                 HStack {
                     Text("Job: ")
                         .fontWeight(.bold)
                     TextField("Type your job..", text: $job)
+                        .autocorrectionDisabled()
                 }
             }
             .padding(10)
