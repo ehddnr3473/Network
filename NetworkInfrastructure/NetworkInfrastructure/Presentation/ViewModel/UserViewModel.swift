@@ -35,12 +35,14 @@ final class UserViewModel: ObservableObject {
                 } catch(let error) {
                     DispatchQueue.main.async {
                         self.result = "GET failed!"
+                        self.user = nil
                     }
                     print(String(describing: error))
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.result = "GET failed during network task!"
+                    self.user = nil
                 }
                 print(String(describing: error))
             }
@@ -61,12 +63,14 @@ final class UserViewModel: ObservableObject {
                 } catch(let error) {
                     DispatchQueue.main.async {
                         self.result = "POST failed!"
+                        self.customUserInformation = nil
                     }
                     print(String(describing: error))
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.result = "POST failed during network task!"
+                    self.customUserInformation = nil
                 }
                 print(String(describing: error))
             }
@@ -89,12 +93,14 @@ final class UserViewModel: ObservableObject {
                 } catch(let error) {
                     DispatchQueue.main.async {
                         self.result = "PUT failed!"
+                        self.customUserInformation = nil
                     }
                     print(String(describing: error))
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.result = "PUT failed during network task!"
+                    self.customUserInformation = nil
                 }
                 print(String(describing: error))
             }
