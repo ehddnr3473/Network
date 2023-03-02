@@ -9,28 +9,39 @@ import SwiftUI
 
 struct UserView: View {
     @ObservedObject var viewModel: UserViewModel
+    @State var id = ""
     @State var name = ""
     @State var job = ""
+    
+    var isIdValid: Bool {
+        !id.isEmpty && Int(id) != nil
+    }
     
     var body: some View {
         VStack {
             userInformationBody
             
-            inputBody
+            submitBody
             
-            Spacer()
+            submitResultsBody
             
             HStack {
                 Button("GET USER") {
-                    viewModel.getUserButtonTapped()
+                    if !id.trimmingCharacters(in: .whitespaces).isEmpty {
+                        viewModel.getUserButtonTapped(id: id)
+                        id = ""
+                    }
                 }
                 .frame(width: 120, height: 50)
                 .border(.secondary)
+                .disabled(!isIdValid)
                 
                 Button("POST USER") {
                     if !name.trimmingCharacters(in: .whitespaces).isEmpty &&
                         !job.trimmingCharacters(in: .whitespaces).isEmpty {
                         viewModel.postUserButtonTapped(name: name, job: job)
+                        name = ""
+                        job = ""
                     }
                 }
                 .frame(width: 120, height: 50)
@@ -98,11 +109,13 @@ struct UserView: View {
                     .fill(Color.cyan)
                     .shadow(radius: 2)
             }
+            
+            TextField("Type ID..", text: $id)
         }
         .padding()
     }
     
-    var inputBody: some View {
+    var submitBody: some View {
         VStack {
             Text("Submit form")
                 .font(.system(.title2, weight: .bold))
@@ -125,6 +138,43 @@ struct UserView: View {
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.pink)
+                    .shadow(radius: 2)
+            }
+        }
+        .padding()
+    }
+    
+    var submitResultsBody: some View {
+        VStack {
+            Text("Submit Results")
+                .font(.system(.title2, weight: .bold))
+            
+            VStack(spacing: 8) {
+                HStack {
+                    Text("ID: ")
+                        .fontWeight(.bold)
+                    Text(viewModel.postedUserResult?.id ?? "")
+                    Spacer()
+                }
+                
+                HStack {
+                    Text("Name: ")
+                        .fontWeight(.bold)
+                    Text(viewModel.postedUserResult?.name ?? "")
+                    Spacer()
+                }
+                
+                HStack {
+                    Text("Job: ")
+                        .fontWeight(.bold)
+                    Text(viewModel.postedUserResult?.job ?? "")
+                    Spacer()
+                }
+            }
+            .padding(15)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.indigo)
                     .shadow(radius: 2)
             }
         }
